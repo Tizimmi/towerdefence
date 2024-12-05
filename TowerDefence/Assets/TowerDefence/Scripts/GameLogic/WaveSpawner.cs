@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
-using TowerDefence.Scripts.EnemyLogic;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.GameLogic
@@ -9,29 +8,42 @@ namespace TowerDefence.Scripts.GameLogic
 	public class WaveSpawner : MonoBehaviour
 	{
 		[SerializeField]
-		private Enemy _enemyPrefab;
-		[SerializeField]
 		private float _waveCooldown;
 		[SerializeField]
 		private Transform _enemyRoot;
+		[SerializeField]
+		private List<WaveInfo> _waveInfos = new();
+
+		private int _currentWaveIndex;
 
 		private void Start()
 		{
-			StartCoroutine(WaveTimer(_waveCooldown));
+			StartCoroutine(SpawnWave(_waveInfos[0]));
 		}
 
-		private IEnumerator WaveTimer(float timeInSec)
+		private IEnumerator SpawnWave(WaveInfo wave)
 		{
-			yield return new WaitForSeconds(timeInSec);
-
-			SpawnWave();
+			_currentWaveIndex++;
+			
+			foreach (var enemy in wave.GetEnemies())
+			{
+				Instantiate(enemy, _enemyRoot.root);
+				yield return new WaitForSeconds(.5f);
+			}
+			
+			yield return StartCoroutine(WaveCooldownTimer(_waveCooldown));
 		}
 
-		private void SpawnWave()
+		private IEnumerator WaveCooldownTimer(float time)
 		{
-			Debug.Log("Wave incoming");
-			Instantiate(_enemyPrefab, _enemyRoot.root);
-			StartCoroutine(WaveTimer(_waveCooldown));
+			yield return new WaitForSeconds(time);
+
+			if (_currentWaveIndex < _waveInfos.Count)
+				yield return StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
+
+			Debug.Log("Restart");
+			_currentWaveIndex = 0;
+			yield return StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
 		}
 	}
 }

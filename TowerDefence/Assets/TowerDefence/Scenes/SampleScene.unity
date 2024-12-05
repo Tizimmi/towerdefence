@@ -238,7 +238,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -320,26 +319,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &1035842861 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3893540858501645531, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
+  m_PrefabInstance: {fileID: 4827986691724527235}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7ab9080bc60410fa60128585fc6ea9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-  _waveCooldown: 5
-  _enemyRoot: {fileID: 641821862}
 --- !u!4 &1035842862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7896947399811988798, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
   m_PrefabInstance: {fileID: 4827986691724527235}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035842863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035842861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7ab9080bc60410fa60128585fc6ea9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _waveCooldown: 5
+  _enemyRoot: {fileID: 641821862}
+  _waveInfos:
+  - {fileID: 11400000, guid: 3e99786e8f11e6d40915dc21211e2d28, type: 2}
+  - {fileID: 11400000, guid: 9269d696aa2dc84489b3d8a63f59db56, type: 2}
+  - {fileID: 11400000, guid: dccbad34cb503ee47bda020e81623a12, type: 2}
 --- !u!4 &1164986351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4622755429909940056, guid: b169a2c0c3b1f6546b1b651997b5c909, type: 3}
@@ -547,7 +554,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7896947399811988798, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1164986351}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3893540858501645531, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1035842863}
   m_SourcePrefab: {fileID: 100100000, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
 --- !u!1001 &7599394782662886809
 PrefabInstance:
