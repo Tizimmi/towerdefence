@@ -7,7 +7,6 @@ namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class SingleTargetTurret : Turret
 	{
-		[Header("Attributes")]
 		[SerializeField]
 		private int _damage;
 		[SerializeField]
@@ -15,9 +14,9 @@ namespace TowerDefence.Scripts.BuildingsLogic
 
 		[Header("Dependencies")]
 		[SerializeField]
-		private ParticleSystem _particle;
-		[SerializeField]
 		private float _rotationSpeed = 5f;
+		[SerializeField]
+		private ParticleSystem _particle;
 		[SerializeField]
 		private Transform _bulletPoint;
 		[SerializeField]
@@ -56,9 +55,9 @@ namespace TowerDefence.Scripts.BuildingsLogic
 				return;
 			
 			_particle.Play();
+			
 			var bullet = Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation, _bulletPoint);
-			bullet.FindTarget(_target.transform);
-			_target._healthComponent.ReduceHealth(_damage);
+			bullet.FindTarget(_target, _damage);
 		}
 
 		private void FollowTarget()

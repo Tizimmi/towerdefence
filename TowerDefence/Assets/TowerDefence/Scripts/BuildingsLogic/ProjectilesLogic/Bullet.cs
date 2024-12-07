@@ -1,4 +1,5 @@
 ﻿using System;
+using TowerDefence.Scripts.EnemyLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
@@ -7,12 +8,15 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 	{
 		[SerializeField]
 		private int _speed;
+		
+		
+		private int _damage;
+		private Enemy _target;
 
-		private Transform _target;
-
-		public void FindTarget(Transform target)
+		public void FindTarget(Enemy target, int damage)
 		{
 			_target = target;
+			_damage = damage;
 		}
 
 		private void Update()
@@ -23,11 +27,12 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 				return;
 			}
 
-			var direction = _target.position - transform.position;
+			var direction = _target.transform.position - transform.position;
 			var distance = _speed * Time.deltaTime;
 
 			if (direction.magnitude <= distance)
 			{
+				_target._healthComponent.ReduceHealth(_damage);
 				Destroy(gameObject);
 				return;
 			}
