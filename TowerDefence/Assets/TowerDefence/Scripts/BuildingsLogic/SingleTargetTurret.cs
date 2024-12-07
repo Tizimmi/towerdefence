@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic;
 using TowerDefence.Scripts.EnemyLogic;
 using UnityEngine;
 
@@ -6,26 +7,37 @@ namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class SingleTargetTurret : Turret
 	{
-		[SerializeField]
-		private SphereCollider _rangeCollider;
+		[Header("Attributes")]
 		[SerializeField]
 		private int _damage;
 		[SerializeField]
 		private float _attackCooldown = 1.5f;
+
+		[Header("Dependencies")]
+		[SerializeField]
+		private ParticleSystem _particle;
 		[SerializeField]
 		private float _rotationSpeed = 5f;
+		[SerializeField]
+		private Transform _bulletPoint;
+		[SerializeField]
+		private Bullet _bulletPrefab;
 
 		private Enemy _target;
 		private float _cooldownTimer;
 
 		private void Start()
 		{
-			_rangeCollider.radius = _range;
 			InvokeRepeating(nameof(GetTarget), 0f, 0.5f);
 		}
 
 		private void Update()
 		{
+			_cooldownTimer -= Time.deltaTime;
+			
+			if(_target == null)
+				return;
+			
 			if (Vector3.Distance(transform.position, _target.transform.position) < _range)
 			{
 				FollowTarget();
@@ -36,16 +48,16 @@ namespace TowerDefence.Scripts.BuildingsLogic
 				Attack();
 				_cooldownTimer = _attackCooldown;
 			}
-
-			_cooldownTimer -= Time.deltaTime;
 		}
 
 		public override void Attack()
 		{
-			if (_target == null || (Vector3.Distance(transform.position, _target.transform.position) >= _range))
+			if ((Vector3.Distance(transform.position, _target.transform.position) >= _range))
 				return;
 			Debug.Log("Casting spell");
+			_particle.Play();
 			_target._healthComponent.ReduceHealth(_damage);
+			Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation, _bulletPoint);
 		}
 
 		private void FollowTarget()
@@ -56,7 +68,7 @@ namespace TowerDefence.Scripts.BuildingsLogic
 			transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 		}
 		
-		public void GetTarget()
+		public void GetTarget() // придумать метод получше, мб через зенжект прокидывать сюда список врагов из спавнера
 		{
 			var validTargets = GameObject.FindGameObjectsWithTag("Enemy").Select(t => t.GetComponent<Enemy>()).ToList();
 			
