@@ -52,12 +52,13 @@ namespace TowerDefence.Scripts.BuildingsLogic
 
 		public override void Attack()
 		{
-			if ((Vector3.Distance(transform.position, _target.transform.position) >= _range))
+			if (Vector3.Distance(transform.position, _target.transform.position) >= _range)
 				return;
-			Debug.Log("Casting spell");
+			
 			_particle.Play();
+			var bullet = Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation, _bulletPoint);
+			bullet.FindTarget(_target.transform);
 			_target._healthComponent.ReduceHealth(_damage);
-			Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation, _bulletPoint);
 		}
 
 		private void FollowTarget()
