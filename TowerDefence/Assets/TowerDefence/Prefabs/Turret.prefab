@@ -216,7 +216,7 @@ MonoBehaviour:
   _range: 15
   _rangeCollider: {fileID: 159678173798981836}
   _damage: 0
-  _rotationSpeed: 1
+  _rotationSpeed: 5
 --- !u!135 &159678173798981836
 SphereCollider:
   m_ObjectHideFlags: 0

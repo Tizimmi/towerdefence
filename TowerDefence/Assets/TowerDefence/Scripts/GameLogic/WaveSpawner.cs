@@ -17,8 +17,6 @@ namespace TowerDefence.Scripts.GameLogic
 
 		private int _currentWaveIndex;
 
-		private List<Enemy> _activeEnemies = new();
-
 		private void Start()
 		{
 			StartCoroutine(SpawnWave(_waveInfos[0]));
@@ -30,8 +28,7 @@ namespace TowerDefence.Scripts.GameLogic
 			
 			foreach (var enemy in wave.GetEnemies())
 			{
-				Instantiate(enemy, _enemyRoot.position, Quaternion.identity, _enemyRoot.root);
-				_activeEnemies.Add(enemy);
+				Instantiate(enemy, _enemyRoot.position, Quaternion.identity, _enemyRoot);
 				yield return new WaitForSeconds(.5f);
 			}
 			

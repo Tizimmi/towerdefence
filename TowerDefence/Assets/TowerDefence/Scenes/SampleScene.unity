@@ -309,6 +309,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2011021462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2011021464}
+  - component: {fileID: 2011021463}
+  m_Layer: 0
+  m_Name: SceneContext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2011021463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011021462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers: []
+  _installerPrefabs: []
+  _autoRun: 1
+  <Initialized>k__BackingField: 0
+  OnPreInstall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
+  OnPostInstall:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
+  OnPreResolve:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
+  OnPostResolve:
+    m_PersistentCalls:
+      m_Calls: []
+    m_CallsDirty: 1
+  _parentNewObjectsUnderSceneContext: 0
+  _contractNames: []
+  _parentContractNames: []
+  _hasInstalled: 0
+  _hasResolved: 0
+--- !u!4 &2011021464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2011021462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4827986691724527235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -317,9 +387,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2104877160557180474, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
+      propertyPath: _damage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104877160557180474, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
+      propertyPath: _attackCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3893540858501645531, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
       propertyPath: m_Name
       value: Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 4808019394963039378, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -31
       objectReference: {fileID: 0}
     - target: {fileID: 7896947399811988798, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
       propertyPath: m_LocalPosition.x
@@ -362,7 +444,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7693000013421510957, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
+    - {fileID: 3685951419593612748, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67e5043b3fbea3c459bc010be90f2946, type: 3}
@@ -373,3 +457,4 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 4827986691724527235}
+  - {fileID: 2011021464}
