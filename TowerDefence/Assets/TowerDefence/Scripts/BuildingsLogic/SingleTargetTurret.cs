@@ -16,6 +16,8 @@ namespace TowerDefence.Scripts.BuildingsLogic
 		[SerializeField]
 		private float _rotationSpeed = 5f;
 		[SerializeField]
+		private float _rotationFollowOffset = 5f;
+		[SerializeField]
 		private ParticleSystem _particle;
 		[SerializeField]
 		private Transform _bulletPoint;
@@ -37,7 +39,7 @@ namespace TowerDefence.Scripts.BuildingsLogic
 			if(_target == null)
 				return;
 			
-			if (Vector3.Distance(transform.position, _target.transform.position) < _range)
+			if (Vector3.Distance(transform.position, _target.transform.position) < _range + _rotationFollowOffset)
 			{
 				FollowTarget();
 			}
