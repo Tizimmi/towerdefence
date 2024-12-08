@@ -10,11 +10,12 @@ namespace TowerDefence.Scripts.EnemyLogic
 		public HealthComponent _healthComponent;
 		[SerializeField]
 		protected float _movementSpeed;
-		[SerializeField]
+
 		protected Waypoints _path;
 
 		protected Transform CurrentWaypoint;
 		
 		public abstract void Move();
+		public abstract void Init(Waypoints path);
 	}
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic
@@ -9,8 +9,10 @@ namespace TowerDefence.Scripts.EnemyLogic
 		[SerializeField]
 		private float _pathOffset = .01f;
 
-		private void Start()
+		public override void Init(Waypoints path)
 		{
+			_path = path;
+			
 			CurrentWaypoint = _path.GetNextWaypoint(CurrentWaypoint);
 			transform.position = CurrentWaypoint.position;
 
