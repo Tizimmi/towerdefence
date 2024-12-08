@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.GameLogic
@@ -12,6 +13,8 @@ namespace TowerDefence.Scripts.GameLogic
 		private Transform _enemyRoot;
 		[SerializeField]
 		private List<WaveInfo> _waveInfos = new();
+		[SerializeField]
+		private Waypoints _waypoints;
 
 		private int _currentWaveIndex;
 
@@ -26,7 +29,8 @@ namespace TowerDefence.Scripts.GameLogic
 			
 			foreach (var enemy in wave.GetEnemies())
 			{
-				Instantiate(enemy, _enemyRoot.position, Quaternion.identity, _enemyRoot);
+				var c = Instantiate(enemy, _enemyRoot.position, Quaternion.identity, _enemyRoot);
+				c.Init(_waypoints);
 				yield return new WaitForSeconds(.5f);
 			}
 			
