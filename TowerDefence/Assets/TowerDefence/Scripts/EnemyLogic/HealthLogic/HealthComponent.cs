@@ -8,6 +8,7 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 		protected int _health;
 		
 		public abstract void ReduceHealth(int value);
+		
 		protected abstract void OnZeroHealth();
 	}
 }

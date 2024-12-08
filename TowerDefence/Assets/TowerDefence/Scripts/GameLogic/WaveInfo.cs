@@ -7,11 +7,11 @@ namespace TowerDefence.Scripts.GameLogic
 	public abstract class WaveInfo : ScriptableObject
 	{
 		[SerializeField]
-		protected List<Enemy> Enemies;
+		protected List<Enemy> _enemies;
 
 		public List<Enemy> GetEnemies()
 		{
-			return Enemies;
+			return _enemies;
 		}
 	}
 }

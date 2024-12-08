@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 {

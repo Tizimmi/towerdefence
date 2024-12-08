@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TowerDefence.Scripts.BuildingsLogic
+namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 {
 	public abstract class Turret : MonoBehaviour
 	{

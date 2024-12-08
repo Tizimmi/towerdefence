@@ -1,5 +1,4 @@
-﻿using System;
-using TowerDefence.Scripts.EnemyLogic;
+﻿using TowerDefence.Scripts.EnemyLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
@@ -8,7 +7,6 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 	{
 		[SerializeField]
 		private int _speed;
-		
 		
 		private int _damage;
 		private Enemy _target;

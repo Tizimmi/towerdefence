@@ -3,7 +3,7 @@ using TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic;
 using TowerDefence.Scripts.EnemyLogic;
 using UnityEngine;
 
-namespace TowerDefence.Scripts.BuildingsLogic
+namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 {
 	public class SingleTargetTurret : Turret
 	{

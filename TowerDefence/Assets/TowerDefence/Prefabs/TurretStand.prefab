@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8650426683361152360}
   - component: {fileID: 3588062264855674217}
   - component: {fileID: 273266980542741954}
+  - component: {fileID: 5764143492541339158}
   m_Layer: 0
   m_Name: TurretStand
   m_TagString: Untagged
@@ -105,3 +106,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5764143492541339158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7202289985004934994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99496ae685044c089fa75d2069e69ae6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hoverColor: {r: 0.3529412, g: 0.3529412, b: 0.3529412, a: 1}

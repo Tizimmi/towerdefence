@@ -11,12 +11,12 @@ namespace TowerDefence.Scripts.EnemyLogic
 
 		public override void Init(Waypoints path)
 		{
-			_path = path;
+			Path = path;
 			
-			CurrentWaypoint = _path.GetNextWaypoint(CurrentWaypoint);
+			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 			transform.position = CurrentWaypoint.position;
 
-			CurrentWaypoint = _path.GetNextWaypoint(CurrentWaypoint);
+			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 		}
 
 		private void Update()
@@ -36,7 +36,7 @@ namespace TowerDefence.Scripts.EnemyLogic
 			
 			if (Vector3.Distance(transform.position, CurrentWaypoint.position) < _pathOffset)
 			{
-				CurrentWaypoint = _path.GetNextWaypoint(CurrentWaypoint);
+				CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 			}
 		}
 	}

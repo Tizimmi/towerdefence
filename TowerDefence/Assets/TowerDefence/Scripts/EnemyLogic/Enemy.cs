@@ -11,7 +11,7 @@ namespace TowerDefence.Scripts.EnemyLogic
 		[SerializeField]
 		protected float _movementSpeed;
 
-		protected Waypoints _path;
+		protected Waypoints Path;
 
 		protected Transform CurrentWaypoint;
 		
