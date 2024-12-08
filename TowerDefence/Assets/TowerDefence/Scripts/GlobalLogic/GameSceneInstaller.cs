@@ -15,6 +15,7 @@ namespace TowerDefence.Scripts.GlobalLogic
 		{
 			Container.BindInstance(_buildingManager).AsSingle().NonLazy();
 			Container.BindInstance(_moneyManager).AsSingle().NonLazy();
+			Container.Bind<GamePrefabFactory>().AsSingle().NonLazy();
 		}
 	}
 }

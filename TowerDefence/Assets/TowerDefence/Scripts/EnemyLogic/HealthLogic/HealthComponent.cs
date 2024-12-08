@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 {
@@ -6,9 +7,8 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 	{ 
 		[SerializeField]
 		protected int _health;
-		
+
+		public Action OnZeroHealth;
 		public abstract void ReduceHealth(int value);
-		
-		protected abstract void OnZeroHealth();
 	}
 }

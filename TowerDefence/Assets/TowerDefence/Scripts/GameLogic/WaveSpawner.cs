@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TowerDefence.Scripts.EnemyLogic;
+using TowerDefence.Scripts.GlobalLogic;
 using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
+using Zenject;
 
 namespace TowerDefence.Scripts.GameLogic
 {
@@ -18,6 +21,9 @@ namespace TowerDefence.Scripts.GameLogic
 
 		private int _currentWaveIndex;
 
+		[Inject]
+		private readonly GamePrefabFactory _gamePrefabFactory;
+
 		private void Start()
 		{
 			StartCoroutine(SpawnWave(_waveInfos[0]));
@@ -29,7 +35,11 @@ namespace TowerDefence.Scripts.GameLogic
 			
 			foreach (var enemy in wave.GetEnemies())
 			{
-				var c = Instantiate(enemy, _enemyRoot.position, Quaternion.identity, _enemyRoot);
+				var c = _gamePrefabFactory.InstantiatePrefab<Enemy>(enemy,
+					_enemyRoot.position,
+					Quaternion.identity,
+					_enemyRoot);
+				
 				c.Init(_waypoints);
 				yield return new WaitForSeconds(.5f);
 			}

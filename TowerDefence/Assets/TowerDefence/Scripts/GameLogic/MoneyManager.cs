@@ -2,7 +2,7 @@
 
 namespace TowerDefence.Scripts.GameLogic
 {
-	public class MoneyManager : MonoBehaviour// переделать из монобеха?
+	public class MoneyManager : MonoBehaviour // переделать из монобеха?
 	{
 		[SerializeField]
 		private int _startingBalance;
@@ -21,6 +21,12 @@ namespace TowerDefence.Scripts.GameLogic
 
 			_currentBalance -= value;
 			return true;
+		}
+
+		public void AddBalance(int value)
+		{
+			_currentBalance += value;
+			Debug.Log(_currentBalance);
 		}
 	}
 }
