@@ -26,7 +26,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 			_currentTurret = null;
 		}
 
-		private void SpawnTurret(Turret turret)
+		public void SpawnTurret(Turret turret)
 		{
 			_currentTurret = turret;
 			var t = Instantiate(turret, _turretRoot);
@@ -37,7 +37,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		{
 			if(_currentTurret != null)
 				return;
-			SpawnTurret(_builder.GetCurrentTurret());
+			_builder.BuildTurret(this);
 		}
 
 		private void OnMouseEnter()

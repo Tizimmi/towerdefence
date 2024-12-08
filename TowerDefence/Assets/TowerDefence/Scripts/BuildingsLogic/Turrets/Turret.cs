@@ -6,6 +6,8 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 	{
 		[SerializeField]
 		protected float _range;
+		[SerializeField]
+		public int _value;
 
 		public abstract void Attack();
 
