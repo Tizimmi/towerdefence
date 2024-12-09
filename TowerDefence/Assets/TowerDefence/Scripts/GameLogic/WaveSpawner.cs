@@ -51,6 +51,7 @@ namespace TowerDefence.Scripts.GameLogic
 				}
 				else
 				{
+					// TODO: конец уровня победой
 					_currentWaveIndex = 0;
 					StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
 				}
