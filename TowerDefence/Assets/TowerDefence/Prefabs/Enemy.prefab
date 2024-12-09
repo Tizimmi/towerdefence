@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthComponent: {fileID: 4821175779458506825}
-  _movementSpeed: 10
+  _movementSpeed: 5
   _killValue: 15
   _pathOffset: 0.1
 --- !u!54 &-8522473883678190949
