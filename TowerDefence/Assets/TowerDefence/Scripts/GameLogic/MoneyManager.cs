@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Plugins.ReactivePropertyModule;
+using TowerDefence.Scripts.GameUI;
+using UnityEngine;
 
 namespace TowerDefence.Scripts.GameLogic
 {
@@ -6,27 +8,29 @@ namespace TowerDefence.Scripts.GameLogic
 	{
 		[SerializeField]
 		private int _startingBalance;
+		[SerializeField]
+		private MoneyView _moneyView;
 		
-		private int _currentBalance;
+		private ReactiveProperty<int> _currentBalance = new(0);
 
 		private void Start()
 		{
-			_currentBalance = _startingBalance;
+			_moneyView.Bind(new MoneyViewModel(_currentBalance));
+			_currentBalance.Value = _startingBalance;
 		}
 
 		public bool TrySpendBalance(int value)
 		{
-			if (_currentBalance - value < 0)
+			if (_currentBalance.Value - value < 0)
 				return false;
 
-			_currentBalance -= value;
+			_currentBalance.Value -= value;
 			return true;
 		}
 
 		public void AddBalance(int value)
 		{
-			_currentBalance += value;
-			Debug.Log(_currentBalance);
+			_currentBalance.Value += value;
 		}
 	}
 }
