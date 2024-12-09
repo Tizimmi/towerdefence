@@ -1,0 +1,4 @@
+﻿{
+  "name": "ReactivePropertyModule",
+  "references":[ "GUID:1a4ce9e585ee41fe87fc394e646c50a4", "GUID:9c363ae288f046b2add73b1a6338fcbc" ]
+}

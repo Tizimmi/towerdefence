@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using TowerDefence.Scripts.GameLogic;
+using UnityEngine;
+using Zenject;
 
 namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 {
@@ -6,7 +8,7 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 	{
 		[SerializeField]
 		private ParticleSystem _onHitParticle;
-
+		
 		private void Start()
 		{
 			_onHitParticle.startColor = gameObject.GetComponent<Renderer>().material.color;
@@ -22,12 +24,7 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 				return;
 
 			_health = 0;
-			OnZeroHealth();
-		}
-
-		protected override void OnZeroHealth()
-		{
-			Destroy(gameObject);
+			OnZeroHealth.Invoke();
 		}
 	}
 }

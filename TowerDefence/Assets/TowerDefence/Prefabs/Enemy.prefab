@@ -122,8 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthComponent: {fileID: 4821175779458506825}
-  _movementSpeed: 10
-  _path: {fileID: 2144183523509165332, guid: b169a2c0c3b1f6546b1b651997b5c909, type: 3}
+  _movementSpeed: 5
+  _killValue: 15
   _pathOffset: 0.1
 --- !u!54 &-8522473883678190949
 Rigidbody:

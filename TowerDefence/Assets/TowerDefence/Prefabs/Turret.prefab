@@ -246,10 +246,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _range: 15
+  _value: 150
   _damage: 2
   _attackCooldown: 0.5
-  _particle: {fileID: 1730557410068663918}
   _rotationSpeed: 5
+  _rotationFollowOffset: 5
+  _particle: {fileID: 1730557410068663918}
   _bulletPoint: {fileID: 4097578273105027746}
   _bulletPrefab: {fileID: 3911704609713816084, guid: 4585325c0aea3894085de332bc6c8d93, type: 3}
 --- !u!1001 &5647388036739447404

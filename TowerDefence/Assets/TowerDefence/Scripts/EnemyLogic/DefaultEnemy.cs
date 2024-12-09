@@ -1,5 +1,7 @@
-﻿using TowerDefence.Scripts.WaypointsSystem;
+﻿using TowerDefence.Scripts.GameLogic;
+using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
+using Zenject;
 
 namespace TowerDefence.Scripts.EnemyLogic
 {
@@ -9,9 +11,13 @@ namespace TowerDefence.Scripts.EnemyLogic
 		[SerializeField]
 		private float _pathOffset = .01f;
 
+		[Inject]
+		private readonly MoneyManager _moneyManager;
+		
 		public override void Init(Waypoints path)
 		{
 			Path = path;
+			_healthComponent.OnZeroHealth += OnZeroHealth;
 			
 			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 			transform.position = CurrentWaypoint.position;
@@ -38,6 +44,17 @@ namespace TowerDefence.Scripts.EnemyLogic
 			{
 				CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 			}
+		}
+
+		protected override void OnZeroHealth()
+		{
+			_moneyManager.AddBalance(_killValue);
+			Destroy(gameObject);
+		}
+
+		private void OnDisable()
+		{
+			_healthComponent.OnZeroHealth -= OnZeroHealth;
 		}
 	}
 }
