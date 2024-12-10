@@ -13,6 +13,7 @@ namespace TowerDefence.Scripts.GameUI
 		protected override void OnBind(MoneyViewModel viewModel)
 		{
 			viewModel.Money.OnValueChange += UpdateValue;
+			UpdateValue(viewModel.Money.Value);
 		}
 
 		protected override void OnUnbind(MoneyViewModel viewModel)

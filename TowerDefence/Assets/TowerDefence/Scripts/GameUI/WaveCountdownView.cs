@@ -14,6 +14,7 @@ namespace TowerDefence.Scripts.GameUI
 		protected override void OnBind(WaveCountdownViewModel viewModel)
 		{
 			viewModel.Timer.OnValueChange += UpdateValue;
+			UpdateValue(viewModel.Timer.Value);
 		}
 
 		protected override void OnUnbind(WaveCountdownViewModel viewModel)
