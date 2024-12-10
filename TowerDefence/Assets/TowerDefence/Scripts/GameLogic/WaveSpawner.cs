@@ -1,8 +1,7 @@
 ﻿using Plugins.ReactivePropertyModule;
 using System.Collections;
-using System.Collections.Generic;
 using TowerDefence.Scripts.EnemyLogic;
-using TowerDefence.Scripts.GameUI;
+using TowerDefence.Scripts.GameLogic.LevelLogic;
 using TowerDefence.Scripts.GlobalLogic;
 using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
@@ -12,28 +11,26 @@ namespace TowerDefence.Scripts.GameLogic
 {
 	public class WaveSpawner : MonoBehaviour
 	{
-		[SerializeField]
-		private float _waveCooldown;
-		[SerializeField]
-		private Transform _enemyRoot;
-		[SerializeField]
-		private List<WaveInfo> _waveInfos = new();
-		[SerializeField]
-		private Waypoints _waypoints;
-		[SerializeField]
-		private WaveCountdownView _waveCountdownView;
-		
-		private int _currentWaveIndex;
-		
-		private ReactiveProperty<float> _waveTimer = new(0);
-
+		public ReactiveProperty<float> WaveTimer { get; } = new(0);
+		[Inject]
+		private readonly Transform _enemyRoot;
 		[Inject]
 		private readonly GamePrefabFactory _gamePrefabFactory;
+		[Inject]
+		private readonly LevelConfig _levelConfig;
+		[Inject]
+		private readonly Waypoints _waypoints;
+
+		private int _currentWaveIndex;
+
+		private WaveInfo[] _waveInfos;
 
 		private void Start()
 		{
-			_waveCountdownView.Bind(new(_waveTimer));
-			_waveTimer.Value = _waveCooldown;
+			_waveInfos = _levelConfig.WaveInfos;
+
+			WaveTimer.Value =
+				_waveInfos[_currentWaveIndex]._waveCooldown; // TODO: Мэйби сделать отдельную переменную для определения первого таймера?
 		}
 
 		private void Update()
@@ -43,9 +40,9 @@ namespace TowerDefence.Scripts.GameLogic
 
 		private void TrySpawnWave()
 		{
-			if (_waveTimer.Value <= 0)
+			if (WaveTimer.Value <= 0)
 			{
-				if (_currentWaveIndex < _waveInfos.Count)
+				if (_currentWaveIndex < _waveInfos.Length)
 				{
 					StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
 				}
@@ -55,27 +52,27 @@ namespace TowerDefence.Scripts.GameLogic
 					_currentWaveIndex = 0;
 					StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
 				}
-				
-				_waveTimer.Value = _waveCooldown;
+
+				WaveTimer.Value = _waveInfos[_currentWaveIndex]._waveCooldown;
 			}
-			
-			_waveTimer.Value -= Time.deltaTime;
+
+			WaveTimer.Value -= Time.deltaTime;
 		}
 
 		private IEnumerator SpawnWave(WaveInfo wave)
 		{
-			_currentWaveIndex++;
-			
 			foreach (var enemy in wave.GetEnemies())
 			{
 				var c = _gamePrefabFactory.InstantiatePrefab<Enemy>(enemy,
 					_enemyRoot.position,
 					Quaternion.identity,
 					_enemyRoot);
-				
+
 				c.Init(_waypoints);
-				yield return new WaitForSeconds(.5f);
+				yield return new WaitForSeconds(_waveInfos[_currentWaveIndex]._spawnRate);
 			}
+
+			_currentWaveIndex++;
 		}
 	}
 }

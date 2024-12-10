@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using TowerDefence.Scripts.EnemyLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.GameLogic
 {
-	public abstract class WaveInfo : ScriptableObject
+	[Serializable]
+	public class WaveInfo
 	{
 		[SerializeField]
-		protected List<Enemy> _enemies;
+		public Enemy[] _enemies;
+		[SerializeField]
+		public float _spawnRate;
+		[SerializeField]
+		public float _waveCooldown;
 
-		public List<Enemy> GetEnemies()
+		public Enemy[] GetEnemies()
 		{
 			return _enemies;
 		}

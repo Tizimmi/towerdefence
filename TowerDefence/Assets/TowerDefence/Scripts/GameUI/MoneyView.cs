@@ -13,6 +13,7 @@ namespace TowerDefence.Scripts.GameUI
 		protected override void OnBind(MoneyViewModel viewModel)
 		{
 			viewModel.Money.OnValueChange += UpdateValue;
+			UpdateValue(viewModel.Money.Value);
 		}
 
 		protected override void OnUnbind(MoneyViewModel viewModel)
@@ -28,8 +29,8 @@ namespace TowerDefence.Scripts.GameUI
 
 	public class MoneyViewModel : ViewModel
 	{
-		private readonly ReactiveProperty<int> _money;
 		public IReadOnlyReactiveProperty<int> Money => _money;
+		private readonly ReactiveProperty<int> _money;
 
 		public MoneyViewModel(ReactiveProperty<int> money)
 		{

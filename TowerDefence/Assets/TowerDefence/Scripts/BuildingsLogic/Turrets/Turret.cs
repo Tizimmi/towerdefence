@@ -5,16 +5,16 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 	public abstract class Turret : MonoBehaviour
 	{
 		[SerializeField]
-		protected float _range;
-		[SerializeField]
 		public int _value;
-
-		public abstract void Attack();
+		[SerializeField]
+		protected float _range;
 
 		private void OnDrawGizmos()
 		{
 			Gizmos.color = Color.cyan;
 			Gizmos.DrawWireSphere(transform.position, _range);
 		}
+
+		public abstract void Attack();
 	}
 }

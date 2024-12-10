@@ -13,10 +13,10 @@ namespace TowerDefence.Scripts.EnemyLogic
 		[SerializeField]
 		protected int _killValue;
 
+		protected Transform CurrentWaypoint;
+
 		protected Waypoints Path;
 
-		protected Transform CurrentWaypoint;
-		
 		public abstract void Move();
 		public abstract void Init(Waypoints path);
 

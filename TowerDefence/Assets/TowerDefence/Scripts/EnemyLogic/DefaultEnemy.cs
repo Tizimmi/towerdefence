@@ -13,21 +13,26 @@ namespace TowerDefence.Scripts.EnemyLogic
 
 		[Inject]
 		private readonly MoneyManager _moneyManager;
-		
-		public override void Init(Waypoints path)
-		{
-			Path = path;
-			_healthComponent.OnZeroHealth += OnZeroHealth;
-			
-			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
-			transform.position = CurrentWaypoint.position;
-
-			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
-		}
 
 		private void Update()
 		{
 			Move();
+		}
+
+		private void OnDisable()
+		{
+			_healthComponent.OnZeroHealth -= OnZeroHealth;
+		}
+
+		public override void Init(Waypoints path)
+		{
+			Path = path;
+			_healthComponent.OnZeroHealth += OnZeroHealth;
+
+			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
+			transform.position = CurrentWaypoint.position;
+
+			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 		}
 
 		public override void Move()
@@ -39,22 +44,15 @@ namespace TowerDefence.Scripts.EnemyLogic
 			}
 
 			transform.position = Vector3.MoveTowards(transform.position, CurrentWaypoint.position, _movementSpeed * Time.deltaTime);
-			
+
 			if (Vector3.Distance(transform.position, CurrentWaypoint.position) < _pathOffset)
-			{
 				CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
-			}
 		}
 
 		protected override void OnZeroHealth()
 		{
 			_moneyManager.AddBalance(_killValue);
 			Destroy(gameObject);
-		}
-
-		private void OnDisable()
-		{
-			_healthComponent.OnZeroHealth -= OnZeroHealth;
 		}
 	}
 }

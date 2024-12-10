@@ -23,9 +23,9 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		private Transform _bulletPoint;
 		[SerializeField]
 		private Bullet _bulletPrefab;
+		private float _cooldownTimer;
 
 		private Enemy _target;
-		private float _cooldownTimer;
 
 		private void Start()
 		{
@@ -35,14 +35,12 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		private void Update()
 		{
 			_cooldownTimer -= Time.deltaTime;
-			
-			if(_target == null)
+
+			if (_target == null)
 				return;
-			
+
 			if (Vector3.Distance(transform.position, _target.transform.position) < _range + _rotationFollowOffset)
-			{
 				FollowTarget();
-			}
 
 			if (_cooldownTimer <= 0)
 			{
@@ -55,32 +53,28 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		{
 			if (Vector3.Distance(transform.position, _target.transform.position) >= _range)
 				return;
-			
+
 			_particle.Play();
-			
-			var bullet = Instantiate(_bulletPrefab, _bulletPoint.position, _bulletPoint.rotation, _bulletPoint);
+
+			var bullet = Instantiate(_bulletPrefab,
+				_bulletPoint.position,
+				_bulletPoint.rotation,
+				_bulletPoint);
+
 			bullet.FindTarget(_target, _damage);
 		}
 
-		private void FollowTarget()
-		{
-			var direction = _target.transform.position - transform.position;
-			var lookRotation = Quaternion.LookRotation(direction);
-			var rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed).eulerAngles;
-			transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-		}
-		
 		public void GetTarget() // придумать метод получше, мб через зенжект прокидывать сюда список врагов из спавнера
 		{
 			var validTargets = GameObject.FindGameObjectsWithTag("Enemy").Select(t => t.GetComponent<Enemy>()).ToList();
-			
+
 			if (validTargets.Count == 0)
 				return;
-				
+
 			var position = transform.position;
-			
+
 			Enemy newTarget = null;
-			
+
 			foreach (var target in validTargets)
 			{
 				if (newTarget == null)
@@ -93,8 +87,16 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 					? target
 					: newTarget;
 			}
-			
+
 			_target = newTarget;
+		}
+
+		private void FollowTarget()
+		{
+			var direction = _target.transform.position - transform.position;
+			var lookRotation = Quaternion.LookRotation(direction);
+			var rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * _rotationSpeed).eulerAngles;
+			transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 		}
 	}
 }

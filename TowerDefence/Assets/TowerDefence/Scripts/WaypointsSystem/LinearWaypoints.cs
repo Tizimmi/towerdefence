@@ -17,10 +17,10 @@ namespace TowerDefence.Scripts.WaypointsSystem
 				Gizmos.DrawWireSphere(t.position, .5f);
 			}
 
-			for (var i = 0; i < transform.childCount-1; i++)
+			for (var i = 0; i < transform.childCount - 1; i++)
 			{
 				Gizmos.color = Color.red;
-				Gizmos.DrawLine(transform.GetChild(i).position, transform.GetChild(i+1).position);
+				Gizmos.DrawLine(transform.GetChild(i).position, transform.GetChild(i + 1).position);
 			}
 		}
 
@@ -30,8 +30,8 @@ namespace TowerDefence.Scripts.WaypointsSystem
 				return transform.GetChild(0);
 
 			var index = currentWaypoint.GetSiblingIndex();
-			
-			return index < transform.childCount - 1 ? transform.GetChild(index+1) : null;
+
+			return index < transform.childCount - 1 ? transform.GetChild(index + 1) : null;
 		}
 	}
 }
