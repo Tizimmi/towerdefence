@@ -4,8 +4,7 @@ namespace TowerDefence.Scripts.GameLogic
 {
 	public class MoneyManager
 	{
-		private ReactiveProperty<int> _currentBalance = new(0);
-		public ReactiveProperty<int> CurrentBalance => _currentBalance;
+		public ReactiveProperty<int> CurrentBalance { get; } = new(0);
 
 		public MoneyManager(int startingBalance)
 		{

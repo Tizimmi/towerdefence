@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 namespace TowerDefence.Scripts.BuildingsLogic.Turrets
@@ -11,13 +10,13 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		[SerializeField]
 		private Transform _turretRoot;
 
-		private Color _defaultColor;
-		private Renderer _renderer;
-		
-		private Turret _currentTurret;
-
 		[Inject]
 		private BuildingManager _builder;
+
+		private Turret _currentTurret;
+
+		private Color _defaultColor;
+		private Renderer _renderer;
 
 		private void Start()
 		{
@@ -26,30 +25,32 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 			_currentTurret = null;
 		}
 
-		public void SpawnTurret(Turret turret)
-		{
-			_currentTurret = turret;
-			var t = Instantiate(turret, _turretRoot);
-			t.transform.localScale = Vector3.one;
-		}
-
 		private void OnMouseDown()
 		{
-			if(_currentTurret != null)
+			if (_currentTurret != null)
 				return;
+
 			_builder.BuildTurret(this);
 		}
 
 		private void OnMouseEnter()
 		{
-			if(_currentTurret != null)
+			if (_currentTurret != null)
 				return;
+
 			_renderer.material.color = _hoverColor;
 		}
 
 		private void OnMouseExit()
 		{
 			_renderer.material.color = _defaultColor;
+		}
+
+		public void SpawnTurret(Turret turret)
+		{
+			_currentTurret = turret;
+			var t = Instantiate(turret, _turretRoot);
+			t.transform.localScale = Vector3.one;
 		}
 	}
 }

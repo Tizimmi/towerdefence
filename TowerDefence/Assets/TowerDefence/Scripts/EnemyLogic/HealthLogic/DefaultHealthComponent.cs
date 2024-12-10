@@ -1,6 +1,4 @@
-﻿using TowerDefence.Scripts.GameLogic;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 {
@@ -8,7 +6,7 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 	{
 		[SerializeField]
 		private ParticleSystem _onHitParticle;
-		
+
 		private void Start()
 		{
 			_onHitParticle.startColor = gameObject.GetComponent<Renderer>().material.color;
@@ -19,7 +17,7 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 			_health -= value;
 
 			_onHitParticle.Play();
-			
+
 			if (_health > 0)
 				return;
 

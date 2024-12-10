@@ -20,12 +20,13 @@ namespace TowerDefence.Scripts.GlobalLogic
 		private Waypoints _waypoints;
 		[SerializeField]
 		private WaveSpawner _waveSpawner;
-		
+
 		private Level _level;
+
 		public override void InstallBindings()
 		{
-			_level = new(_levelConfig, _waveSpawner);
-			
+			_level = new Level(_levelConfig, _waveSpawner);
+
 			Container.Bind<GameUIManager>().AsSingle().NonLazy();
 			Container.Bind<BuildingManager>().FromInstance(_level.BuildingManager).AsSingle();
 			Container.Bind<MoneyManager>().FromInstance(_level.MoneyManager).AsSingle();

@@ -3,13 +3,11 @@ using Zenject;
 
 namespace TowerDefence.Scripts.GameLogic.LevelLogic
 {
-	public class Level 
+	public class Level
 	{
-		public MoneyManager MoneyManager { get; private set; }
+		public MoneyManager MoneyManager { get; }
 		public BuildingManager BuildingManager { get; private set; }
-		
-		private readonly WaveSpawner _waveSpawner;
-		public WaveSpawner WaveSpawner => _waveSpawner;
+		public WaveSpawner WaveSpawner { get; }
 
 		[Inject]
 		private readonly LevelConfig _levelConfig;
@@ -17,9 +15,9 @@ namespace TowerDefence.Scripts.GameLogic.LevelLogic
 		public Level(LevelConfig levelConfig, WaveSpawner waveSpawner)
 		{
 			_levelConfig = levelConfig;
-			_waveSpawner = waveSpawner;
-			MoneyManager = new(_levelConfig.StartingBalance);
-			BuildingManager = new(MoneyManager, _levelConfig.SelectedTurret);
+			WaveSpawner = waveSpawner;
+			MoneyManager = new MoneyManager(_levelConfig.StartingBalance);
+			BuildingManager = new BuildingManager(MoneyManager, _levelConfig.SelectedTurret);
 		}
 	}
 }

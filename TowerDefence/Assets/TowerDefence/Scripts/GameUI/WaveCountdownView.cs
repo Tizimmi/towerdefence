@@ -1,6 +1,5 @@
 ﻿using Plugins.MVVMModule;
 using Plugins.ReactivePropertyModule;
-using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -18,7 +17,7 @@ namespace TowerDefence.Scripts.GameUI
 		}
 
 		protected override void OnUnbind(WaveCountdownViewModel viewModel)
-		{			
+		{
 			viewModel.Timer.OnValueChange -= UpdateValue;
 		}
 
@@ -29,15 +28,15 @@ namespace TowerDefence.Scripts.GameUI
 				_waveCountdown.text = string.Empty;
 				return;
 			}
-			
+
 			_waveCountdown.text = Mathf.Ceil(time).ToString();
 		}
 	}
 
 	public class WaveCountdownViewModel : ViewModel
 	{
-		private readonly ReactiveProperty<float> _timer;
 		public IReadOnlyReactiveProperty<float> Timer => _timer;
+		private readonly ReactiveProperty<float> _timer;
 
 		public WaveCountdownViewModel(ReactiveProperty<float> timer)
 		{

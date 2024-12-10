@@ -29,8 +29,8 @@ namespace TowerDefence.Scripts.GameUI
 
 	public class MoneyViewModel : ViewModel
 	{
-		private readonly ReactiveProperty<int> _money;
 		public IReadOnlyReactiveProperty<int> Money => _money;
+		private readonly ReactiveProperty<int> _money;
 
 		public MoneyViewModel(ReactiveProperty<int> money)
 		{

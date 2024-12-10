@@ -7,15 +7,9 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 	{
 		[SerializeField]
 		private int _speed;
-		
+
 		private int _damage;
 		private Enemy _target;
-
-		public void FindTarget(Enemy target, int damage)
-		{
-			_target = target;
-			_damage = damage;
-		}
 
 		private void Update()
 		{
@@ -34,8 +28,14 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 				Destroy(gameObject);
 				return;
 			}
-			
+
 			transform.Translate(direction.normalized * distance, Space.World);
+		}
+
+		public void FindTarget(Enemy target, int damage)
+		{
+			_target = target;
+			_damage = damage;
 		}
 	}
 }

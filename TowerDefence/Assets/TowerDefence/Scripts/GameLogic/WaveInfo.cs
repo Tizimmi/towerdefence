@@ -1,9 +1,10 @@
-﻿using TowerDefence.Scripts.EnemyLogic;
+﻿using System;
+using TowerDefence.Scripts.EnemyLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.GameLogic
 {
-	[System.Serializable]
+	[Serializable]
 	public class WaveInfo
 	{
 		[SerializeField]
