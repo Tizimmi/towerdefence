@@ -24,7 +24,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 
 			if (direction.magnitude <= distance)
 			{
-				_target._healthComponent.ReduceHealth(_damage);
+				_target.BaseStats._healthComponent.ReduceHealth(_damage);
 				Destroy(gameObject);
 				return;
 			}
