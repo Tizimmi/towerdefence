@@ -30,8 +30,7 @@ namespace TowerDefence.Scripts.GameLogic
 		{
 			_waveInfos = _levelConfig.WaveInfos;
 
-			WaveTimer.Value =
-				_waveInfos[_currentWaveIndex]._waveCooldown; // TODO: Мэйби сделать отдельную переменную для определения первого таймера?
+			WaveTimer.Value = 0; // TODO: Мэйби сделать отдельную переменную для определения первого таймера?
 		}
 
 		private void Update()

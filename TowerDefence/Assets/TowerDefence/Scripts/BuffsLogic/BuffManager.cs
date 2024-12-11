@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TowerDefence.Scripts.EnemyLogic.EnemyStats;
+using UnityEngine;
 
 namespace TowerDefence.Scripts.BuffsLogic
 {
@@ -18,6 +19,11 @@ namespace TowerDefence.Scripts.BuffsLogic
 
 		public void AddBuff(IBuff buff)
 		{
+			if (_buffs.Contains(buff) & buff.IsEffectStackable == false)
+			{
+				return;
+			}
+			
 			_buffs.Add(buff);
 			
 			ApplyBuffs();
@@ -34,8 +40,10 @@ namespace TowerDefence.Scripts.BuffsLogic
 
 			foreach (var b in _buffs)
 			{
-				b.ApplyBuff(_currentStats);
+				_currentStats = b.ApplyBuff(_currentStats);
 			}
+			
+			Debug.Log(_currentStats._movementComponent._movementSpeed + "\t" + _baseStats._movementComponent._movementSpeed);
 		}
 	}
 }

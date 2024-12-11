@@ -24,8 +24,9 @@ namespace TowerDefence.Scripts.EnemyLogic
 
 		public void Start()
 		{
-			CurrentStats = BaseStats;
 			BuffManager = new BuffManager(BaseStats);
+			CurrentStats = BaseStats;
+	
 		}
 	}
 }

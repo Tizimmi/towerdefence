@@ -6,7 +6,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 	public class DefaultTurret : WithTargetTurret
 	{
 		[SerializeField]
-		private float _attackCooldown = 1.5f;
+		private float _attackCooldown = .5f;
 
 		[Header("Dependencies")]
 		[SerializeField]
