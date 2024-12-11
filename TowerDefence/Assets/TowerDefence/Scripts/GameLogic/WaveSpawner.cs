@@ -69,7 +69,7 @@ namespace TowerDefence.Scripts.GameLogic
 					Quaternion.identity,
 					_enemyRoot);
 
-				c.Init(_waypoints);
+				c.BaseStats._movementComponent.Init(_waypoints);
 				yield return new WaitForSeconds(_waveInfos[_currentWaveIndex]._spawnRate);
 			}
 

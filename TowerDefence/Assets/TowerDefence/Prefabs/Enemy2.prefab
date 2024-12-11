@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 655922306643017031}
   - component: {fileID: 1635318014772217231}
   - component: {fileID: -8108909891250993910}
+  - component: {fileID: 5927942984160992849}
+  - component: {fileID: 4811079129964876670}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -121,10 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecd4879a714e4b668ac7561f37784035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthComponent: {fileID: -8108909891250993910}
-  _movementSpeed: 5
-  _killValue: 30
-  _pathOffset: 0.1
+  <BaseStats>k__BackingField: {fileID: 4811079129964876670}
 --- !u!54 &1635318014772217231
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,7 +164,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 10
-  _onHitParticle: {fileID: 3924851475831649747}
+--- !u!114 &5927942984160992849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3106779051837085710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9d9f9eb82fe408a9275e32fd3d50c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _movementSpeed: 5
+  _pathOffset: 0.1
+--- !u!114 &4811079129964876670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3106779051837085710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcb98ff847742979707d6e3042cd558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthComponent: {fileID: -8108909891250993910}
+  _movementComponent: {fileID: 5927942984160992849}
+  _killValue: 30
 --- !u!1001 &9122596347771518116
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -223,11 +250,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4ed2aed5fbf3964b9ba5faf4c3bcc16, type: 3}
---- !u!198 &3924851475831649747 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5255180233076541815, guid: d4ed2aed5fbf3964b9ba5faf4c3bcc16, type: 3}
-  m_PrefabInstance: {fileID: 9122596347771518116}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7557859291480322666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1619908213612973774, guid: d4ed2aed5fbf3964b9ba5faf4c3bcc16, type: 3}
