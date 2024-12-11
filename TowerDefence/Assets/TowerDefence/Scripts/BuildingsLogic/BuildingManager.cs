@@ -6,7 +6,7 @@ namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class BuildingManager
 	{
-		private readonly Turret _selectedTurret;
+		private Turret _selectedTurret;
 
 		private readonly MoneyManager _moneyManager;
 
@@ -14,6 +14,11 @@ namespace TowerDefence.Scripts.BuildingsLogic
 		{
 			_moneyManager = moneyManager;
 			_selectedTurret = selectedTurret;
+		}
+
+		public void SetCurrentTurret(Turret turret)
+		{
+			_selectedTurret = turret;
 		}
 
 		public Turret GetCurrentTurret()

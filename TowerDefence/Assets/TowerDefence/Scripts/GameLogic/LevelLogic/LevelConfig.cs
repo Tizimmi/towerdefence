@@ -20,6 +20,6 @@ namespace TowerDefence.Scripts.GameLogic.LevelLogic
 		public WaveCountdownView WaveCountdownView { get; private set; }
 
 		[field: SerializeField]
-		public Turret SelectedTurret { get; private set; } // TODO: удалить, сделать систему ЮАЙ, которая будет выбирать турель
+		public Turret[] AvailableTurrets { get; private set; } 
 	}
 }

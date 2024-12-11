@@ -12,6 +12,7 @@ namespace TowerDefence.Scripts.GameLogic
 	public class WaveSpawner : MonoBehaviour
 	{
 		public ReactiveProperty<float> WaveTimer { get; } = new(0);
+		
 		[Inject]
 		private readonly Transform _enemyRoot;
 		[Inject]
