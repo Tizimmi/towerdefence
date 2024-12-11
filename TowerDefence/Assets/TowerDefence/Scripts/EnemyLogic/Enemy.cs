@@ -10,14 +10,14 @@ namespace TowerDefence.Scripts.EnemyLogic
 		
 		public EnemyStats.EnemyStats CurrentStats { get; protected set; }
 
-		public BuffComponent BuffComponent;
+		public BuffManager BuffManager;
 
 		protected abstract void OnZeroHealth();
 
 		public void Start()
 		{
 			CurrentStats = BaseStats;
-			BuffComponent = new BuffComponent(BaseStats);
+			BuffManager = new BuffManager(BaseStats);
 		}
 	}
 }

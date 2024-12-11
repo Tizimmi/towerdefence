@@ -3,36 +3,36 @@ using TowerDefence.Scripts.EnemyLogic.EnemyStats;
 
 namespace TowerDefence.Scripts.BuffsLogic
 {
-	public class BuffComponent : IBuffable
+	public class BuffManager : IBuffable
 	{
-		private EnemyStats _baseStats;
+		private readonly EnemyStats _baseStats;
 		private EnemyStats _currentStats;
 		
-		public BuffComponent(EnemyStats baseStats)
+		public BuffManager(EnemyStats baseStats)
 		{
 			_baseStats = baseStats;
 			_currentStats = baseStats;
 		}
-		
-		protected readonly List<IBuff> Buffs = new();
+
+		private readonly List<IBuff> _buffs = new();
 
 		public void AddBuff(IBuff buff)
 		{
-			Buffs.Add(buff);
+			_buffs.Add(buff);
 			
 			ApplyBuffs();
 		}
 
 		public void RemoveBuff(IBuff buff)
 		{
-			Buffs.Remove(buff);
+			_buffs.Remove(buff);
 		}
 
 		private void ApplyBuffs()
 		{
 			_currentStats = _baseStats;
 
-			foreach (var b in Buffs)
+			foreach (var b in _buffs)
 			{
 				b.ApplyBuff(_currentStats);
 			}
