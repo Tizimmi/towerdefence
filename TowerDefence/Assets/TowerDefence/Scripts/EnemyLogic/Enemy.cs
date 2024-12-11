@@ -1,25 +1,23 @@
-﻿using TowerDefence.Scripts.EnemyLogic.HealthLogic;
-using TowerDefence.Scripts.WaypointsSystem;
+﻿using TowerDefence.Scripts.BuffsLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic
 {
 	public abstract class Enemy : MonoBehaviour
 	{
-		[SerializeField]
-		public HealthComponent _healthComponent;
-		[SerializeField]
-		protected float _movementSpeed;
-		[SerializeField]
-		protected int _killValue;
+		[field:SerializeField]
+		public EnemyStats.EnemyStats BaseStats { get; private set; }
+		
+		public EnemyStats.EnemyStats CurrentStats { get; protected set; }
 
-		protected Transform CurrentWaypoint;
-
-		protected Waypoints Path;
-
-		public abstract void Move();
-		public abstract void Init(Waypoints path);
+		public BuffComponent BuffComponent;
 
 		protected abstract void OnZeroHealth();
+
+		public void Start()
+		{
+			CurrentStats = BaseStats;
+			BuffComponent = new BuffComponent(BaseStats);
+		}
 	}
 }
