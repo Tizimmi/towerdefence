@@ -1,4 +1,6 @@
 ﻿using TowerDefence.Scripts.BuffsLogic;
+using TowerDefence.Scripts.EnemyLogic.HealthLogic;
+using TowerDefence.Scripts.EnemyLogic.MovementLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic
@@ -7,6 +9,12 @@ namespace TowerDefence.Scripts.EnemyLogic
 	{
 		[field:SerializeField]
 		public EnemyStats.EnemyStats BaseStats { get; private set; }
+
+		[SerializeField]
+		public HealthComponent _healthComponent;
+
+		[SerializeField]
+		public MovementComponent _movementComponent;
 		
 		public EnemyStats.EnemyStats CurrentStats { get; protected set; }
 

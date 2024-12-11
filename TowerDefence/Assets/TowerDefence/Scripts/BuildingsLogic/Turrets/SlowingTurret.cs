@@ -25,7 +25,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 			if (Vector3.Distance(transform.position, Target.transform.position) >= _range)
 				return;
 			
-			Target._healthComponent.ReduceHealth(_damage * Time.deltaTime);
+			
 		}
 	}
 }

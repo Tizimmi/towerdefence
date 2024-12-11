@@ -4,6 +4,6 @@ namespace TowerDefence.Scripts.BuffsLogic
 {
 	public interface IBuff
 	{
-		void ApplyBuff(EnemyStats baseStats);
+		EnemyStats ApplyBuff(EnemyStats baseStats);
 	}
 }

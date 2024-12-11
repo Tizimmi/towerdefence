@@ -5,10 +5,10 @@ namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 {
 	public abstract class HealthComponent : MonoBehaviour
 	{
-		[SerializeField]
-		protected float _health;
+		protected float Health;
 
 		public Action OnZeroHealth;
 		public abstract void ReduceHealth(float value);
+		public abstract void Init(float maxHealth);
 	}
 }

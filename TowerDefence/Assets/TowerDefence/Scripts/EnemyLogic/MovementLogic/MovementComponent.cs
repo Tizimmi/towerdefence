@@ -5,11 +5,11 @@ namespace TowerDefence.Scripts.EnemyLogic.MovementLogic
 {
 	public abstract class MovementComponent : MonoBehaviour
 	{
-		[SerializeField]
-		public float _movementSpeed;
 		[Range(0.01f, 2f)]
 		[SerializeField]
 		protected float _pathOffset;
+
+		protected float MovementSpeed { get; set; }
 		
 		protected Transform CurrentWaypoint;
 
@@ -17,6 +17,6 @@ namespace TowerDefence.Scripts.EnemyLogic.MovementLogic
 		
 		public abstract void Move();
 		
-		public abstract void Init(Waypoints path);
+		public abstract void Init(Waypoints path, float moveSpeed);
 	}
 }

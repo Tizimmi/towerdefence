@@ -1,15 +1,20 @@
 ﻿namespace TowerDefence.Scripts.EnemyLogic.HealthLogic
 {
 	public class DefaultHealthComponent : HealthComponent
-	{ 
+	{
+		public override void Init(float maxHealth)
+		{
+			Health = maxHealth;
+		}
+
 		public override void ReduceHealth(float value)
 		{
-			_health -= value;
+			Health -= value;
 			
-			if (_health > 0)
+			if (Health > 0)
 				return;
 
-			_health = 0;
+			Health = 0;
             
 			OnZeroHealth?.Invoke();
 		}

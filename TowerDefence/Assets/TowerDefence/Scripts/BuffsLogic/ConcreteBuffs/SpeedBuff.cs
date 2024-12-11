@@ -11,9 +11,11 @@ namespace TowerDefence.Scripts.BuffsLogic.ConcreteBuffs
 			_speedMultiplier = speedMultiplier;
 		}
 		
-		public void ApplyBuff(EnemyStats baseStats)
+		public EnemyStats ApplyBuff(EnemyStats baseStats)
 		{
-			baseStats._movementComponent._movementSpeed *= _speedMultiplier ;
+			var newStats = baseStats;
+			newStats.MovementSpeed *= _speedMultiplier;
+			return newStats;
 		}
 	}
 }
