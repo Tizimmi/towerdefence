@@ -1,5 +1,4 @@
-﻿using TowerDefence.Scripts.BuffsLogic;
-using TowerDefence.Scripts.GameLogic;
+﻿using TowerDefence.Scripts.GameLogic;
 using Zenject;
 
 namespace TowerDefence.Scripts.EnemyLogic
@@ -9,26 +8,27 @@ namespace TowerDefence.Scripts.EnemyLogic
 		[Inject]
 		private readonly MoneyManager _moneyManager;
 
-		private new void Start()
+		private void Start()
 		{
-			base.Start();
-			CurrentStats._healthComponent.OnZeroHealth += OnZeroHealth;
+			_healthComponent.Init(_buffManager.BaseStats.Health);
+			_healthComponent.OnZeroHealth += OnZeroHealth;
+			_buffManager.Init();
 		}
 
 		private void Update()
 		{
-			CurrentStats._movementComponent.Move();
+			_movementComponent.Move(_buffManager.CurrentStats.MovementSpeed);
 		}
 
 		protected override void OnZeroHealth()
 		{
-			_moneyManager.AddBalance(CurrentStats._killValue);
+			_moneyManager.AddBalance(_buffManager.BaseStats.KillValue);
 			Destroy(gameObject);
 		}
 
 		private void OnDestroy()
 		{
-			CurrentStats._healthComponent.OnZeroHealth -= OnZeroHealth;
+			_healthComponent.OnZeroHealth -= OnZeroHealth;
 		}
 	}
 }

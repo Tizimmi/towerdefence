@@ -2,15 +2,21 @@
 {
 	public class DefaultHealthComponent : HealthComponent
 	{
-		public override void ReduceHealth(int value)
+		public override void Init(float maxHealth)
 		{
-			_health -= value;
+			Health = maxHealth;
+		}
 
-			if (_health > 0)
+		public override void ReduceHealth(float value)
+		{
+			Health -= value;
+			
+			if (Health > 0)
 				return;
 
-			_health = 0;
-			OnZeroHealth.Invoke();
+			Health = 0;
+            
+			OnZeroHealth?.Invoke();
 		}
 	}
 }

@@ -1,16 +1,12 @@
-﻿using TowerDefence.Scripts.EnemyLogic.HealthLogic;
-using TowerDefence.Scripts.EnemyLogic.MovementLogic;
-using UnityEngine;
+﻿using System;
 
 namespace TowerDefence.Scripts.EnemyLogic.EnemyStats
 {
-	public class EnemyStats : MonoBehaviour
+	[Serializable]
+	public struct EnemyStats
 	{
-		[SerializeField]
-		public HealthComponent _healthComponent;
-		[SerializeField]
-		public MovementComponent _movementComponent;
-		[SerializeField]
-		public int _killValue;
+		public int Health;
+		public float MovementSpeed;
+		public int KillValue;
 	}
 }

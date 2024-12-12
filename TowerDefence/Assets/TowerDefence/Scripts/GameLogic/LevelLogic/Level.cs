@@ -17,7 +17,7 @@ namespace TowerDefence.Scripts.GameLogic.LevelLogic
 			_levelConfig = levelConfig;
 			WaveSpawner = waveSpawner;
 			MoneyManager = new MoneyManager(_levelConfig.StartingBalance);
-			BuildingManager = new BuildingManager(MoneyManager, _levelConfig.SelectedTurret);
+			BuildingManager = new BuildingManager(MoneyManager, _levelConfig.AvailableTurrets[0]);
 		}
 	}
 }

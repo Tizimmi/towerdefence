@@ -12,29 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29bce0835e3b4f60a409e0e57c947e48, type: 3}
   m_Name: FirstLevelConfig
   m_EditorClassIdentifier: 
-  <StartingBalance>k__BackingField: 150
+  <StartingBalance>k__BackingField: 500
   <WaveInfos>k__BackingField:
   - _enemies:
     - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    - {fileID: 655922306643017031, guid: 1441e321930ff7a429da59c667a898b2, type: 3}
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
     _spawnRate: 0.5
-    _waveCooldown: 5
-  - _enemies:
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    - {fileID: 655922306643017031, guid: 1441e321930ff7a429da59c667a898b2, type: 3}
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    - {fileID: 655922306643017031, guid: 1441e321930ff7a429da59c667a898b2, type: 3}
-    _spawnRate: 0.5
-    _waveCooldown: 10
-  - _enemies:
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    - {fileID: 655922306643017031, guid: 1441e321930ff7a429da59c667a898b2, type: 3}
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
-    _spawnRate: 0.5
-    _waveCooldown: 10
+    _waveCooldown: 20
   <MoneyView>k__BackingField: {fileID: 1095059906980037269, guid: cbf990783c9a96e4791547c3c7f4c640, type: 3}
   <WaveCountdownView>k__BackingField: {fileID: 7773687140304178092, guid: ede51c6361931584c88f3545660e47cf, type: 3}
-  <SelectedTurret>k__BackingField: {fileID: 7008632863918377452, guid: b4555936ef7d576438632b5f0906c3df, type: 3}
+  <AvailableTurrets>k__BackingField:
+  - {fileID: 9204242841324675788, guid: 7e8461ecf161b0b468365c6f1b283667, type: 3}

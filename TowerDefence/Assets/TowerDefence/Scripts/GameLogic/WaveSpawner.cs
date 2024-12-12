@@ -12,6 +12,7 @@ namespace TowerDefence.Scripts.GameLogic
 	public class WaveSpawner : MonoBehaviour
 	{
 		public ReactiveProperty<float> WaveTimer { get; } = new(0);
+		
 		[Inject]
 		private readonly Transform _enemyRoot;
 		[Inject]
@@ -29,8 +30,7 @@ namespace TowerDefence.Scripts.GameLogic
 		{
 			_waveInfos = _levelConfig.WaveInfos;
 
-			WaveTimer.Value =
-				_waveInfos[_currentWaveIndex]._waveCooldown; // TODO: Мэйби сделать отдельную переменную для определения первого таймера?
+			WaveTimer.Value = 0; // TODO: Мэйби сделать отдельную переменную для определения первого таймера?
 		}
 
 		private void Update()
@@ -68,7 +68,8 @@ namespace TowerDefence.Scripts.GameLogic
 					Quaternion.identity,
 					_enemyRoot);
 
-				c.BaseStats._movementComponent.Init(_waypoints);
+				c._movementComponent.Init(_waypoints);
+				
 				yield return new WaitForSeconds(_waveInfos[_currentWaveIndex]._spawnRate);
 			}
 

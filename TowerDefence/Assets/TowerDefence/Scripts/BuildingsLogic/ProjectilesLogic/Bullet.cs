@@ -8,7 +8,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 		[SerializeField]
 		private int _speed;
 
-		private int _damage;
+		private float _damage;
 		private Enemy _target;
 
 		private void Update()
@@ -24,7 +24,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 
 			if (direction.magnitude <= distance)
 			{
-				_target.BaseStats._healthComponent.ReduceHealth(_damage);
+				_target._healthComponent.ReduceHealth(_damage);
 				Destroy(gameObject);
 				return;
 			}
@@ -32,7 +32,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.ProjectilesLogic
 			transform.Translate(direction.normalized * distance, Space.World);
 		}
 
-		public void FindTarget(Enemy target, int damage)
+		public void FindTarget(Enemy target, float damage)
 		{
 			_target = target;
 			_damage = damage;
