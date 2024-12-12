@@ -38,10 +38,17 @@ namespace TowerDefence.Scripts.BuffsLogic
 		{
 			CurrentStats = BaseStats;
 
+			var buffs = new List<string>(); // blyat' costyl' pizdec prosto
+			
 			foreach (var b in _buffs)
 			{
+				if (buffs.Contains(nameof(b)) & !b.IsStackable)
+					return;
+				buffs.Add(nameof(b));
 				CurrentStats = b.ApplyBuff(CurrentStats);
 			}
+			
+			buffs.Clear();
 		}
 	}
 }

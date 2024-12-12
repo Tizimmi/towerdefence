@@ -20,7 +20,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		private void Start()
 		{
 			InvokeRepeating(nameof(GetTarget), 0f, 0.5f);
-			_speedBuff = new(_speedMultiplier);
+			_speedBuff = new(_speedMultiplier, false);
 		}
 		
 		private void Update()
@@ -45,7 +45,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 			if (Vector3.Distance(transform.position, Target.transform.position) >= _range)
 				return;
 			
-			Target._buffManager.AddBuff(new TimedBuff(Target._buffManager, _speedBuff, _tickTime));
+			Target._buffManager.AddBuff(new TimedBuff(Target._buffManager, _speedBuff, _tickTime, false));
 			Target._healthComponent.ReduceHealth(_damage);
 		}
 	}

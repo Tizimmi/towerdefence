@@ -6,11 +6,14 @@ namespace TowerDefence.Scripts.BuffsLogic.ConcreteBuffs
 	{
 		private readonly float _speedMultiplier;
 
-		public SpeedBuff(float speedMultiplier)
+		public bool IsStackable { get; }
+
+		public SpeedBuff(float speedMultiplier, bool isStackable)
 		{
 			_speedMultiplier = speedMultiplier;
+			IsStackable = isStackable;
 		}
-		
+
 		public EnemyStats ApplyBuff(EnemyStats baseStats)
 		{
 			var newStats = baseStats;

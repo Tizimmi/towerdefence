@@ -12,11 +12,15 @@ namespace TowerDefence.Scripts.BuffsLogic
 		private readonly SyncedTimer _timer;
 		private bool _isTimerOn;
 
-		public TimedBuff(IBuffable target, IBuff coreBuff, float seconds)
+		public bool IsStackable { get; }
+
+		public TimedBuff(IBuffable target, IBuff coreBuff, float seconds,
+			bool isStackable)
 		{
 			_target = target;
 			_coreBuff = coreBuff;
 			_seconds = seconds;
+			IsStackable = isStackable;
 			_isTimerOn = false;
 
 			_timer = new SyncedTimer(TimerType.UpdateTick);
