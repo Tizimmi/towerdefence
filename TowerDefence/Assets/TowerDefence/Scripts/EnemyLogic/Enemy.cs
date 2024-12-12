@@ -7,26 +7,15 @@ namespace TowerDefence.Scripts.EnemyLogic
 {
 	public abstract class Enemy : MonoBehaviour
 	{
-		[field:SerializeField]
-		public EnemyStats.EnemyStats BaseStats { get; private set; }
+		[SerializeField]
+		public BuffManager _buffManager;
 
 		[SerializeField]
 		public HealthComponent _healthComponent;
 
 		[SerializeField]
 		public MovementComponent _movementComponent;
-		
-		public EnemyStats.EnemyStats CurrentStats { get; protected set; }
-
-		public BuffManager BuffManager;
 
 		protected abstract void OnZeroHealth();
-
-		public void Start()
-		{
-			BuffManager = new BuffManager(BaseStats);
-			CurrentStats = BaseStats;
-	
-		}
 	}
 }

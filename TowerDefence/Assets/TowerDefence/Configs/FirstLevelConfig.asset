@@ -17,7 +17,7 @@ MonoBehaviour:
   - _enemies:
     - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
     _spawnRate: 0.5
-    _waveCooldown: 100
+    _waveCooldown: 20
   <MoneyView>k__BackingField: {fileID: 1095059906980037269, guid: cbf990783c9a96e4791547c3c7f4c640, type: 3}
   <WaveCountdownView>k__BackingField: {fileID: 7773687140304178092, guid: ede51c6361931584c88f3545660e47cf, type: 3}
   <AvailableTurrets>k__BackingField:

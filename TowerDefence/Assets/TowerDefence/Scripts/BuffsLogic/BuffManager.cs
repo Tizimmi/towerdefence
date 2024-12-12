@@ -1,29 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TowerDefence.Scripts.EnemyLogic.EnemyStats;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.BuffsLogic
 {
+	[Serializable]
 	public class BuffManager : IBuffable
 	{
-		private readonly EnemyStats _baseStats;
-		private EnemyStats _currentStats;
+		[field:SerializeField] 
+		public EnemyStats BaseStats { get; private set; }
 		
-		public BuffManager(EnemyStats baseStats)
+		public EnemyStats CurrentStats { get; set; }
+
+		public void Init()
 		{
-			_baseStats = baseStats;
-			_currentStats = baseStats;
+			CurrentStats = BaseStats;
 		}
 
 		private readonly List<IBuff> _buffs = new();
 
 		public void AddBuff(IBuff buff)
 		{
-			if (_buffs.Contains(buff) & buff.IsEffectStackable == false)
-			{
-				return;
-			}
-			
 			_buffs.Add(buff);
 			
 			ApplyBuffs();
@@ -32,18 +30,18 @@ namespace TowerDefence.Scripts.BuffsLogic
 		public void RemoveBuff(IBuff buff)
 		{
 			_buffs.Remove(buff);
+			
+			ApplyBuffs();
 		}
-
+		
 		private void ApplyBuffs()
 		{
-			_currentStats = _baseStats;
+			CurrentStats = BaseStats;
 
 			foreach (var b in _buffs)
 			{
-				_currentStats = b.ApplyBuff(_currentStats);
+				CurrentStats = b.ApplyBuff(CurrentStats);
 			}
-			
-			Debug.Log(_currentStats._movementComponent._movementSpeed + "\t" + _baseStats._movementComponent._movementSpeed);
 		}
 	}
 }

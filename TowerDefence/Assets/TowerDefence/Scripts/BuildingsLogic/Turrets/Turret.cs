@@ -5,7 +5,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 	public abstract class Turret : MonoBehaviour
 	{
 		[SerializeField]
-		protected int _damage;
+		protected float _damage;
 		[SerializeField]
 		protected float _range;
 		[SerializeField]

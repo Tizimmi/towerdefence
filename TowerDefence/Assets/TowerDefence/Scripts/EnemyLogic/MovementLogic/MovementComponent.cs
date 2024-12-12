@@ -8,15 +8,13 @@ namespace TowerDefence.Scripts.EnemyLogic.MovementLogic
 		[Range(0.01f, 2f)]
 		[SerializeField]
 		protected float _pathOffset;
-
-		protected float MovementSpeed { get; set; }
 		
 		protected Transform CurrentWaypoint;
 
 		protected Waypoints Path;
 		
-		public abstract void Move();
+		public abstract void Move(float speed);
 		
-		public abstract void Init(Waypoints path, float moveSpeed);
+		public abstract void Init(Waypoints path);
 	}
 }

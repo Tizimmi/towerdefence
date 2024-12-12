@@ -1,6 +1,5 @@
 ﻿using Plugins.Timer.SyncedTimer.Scripts;
 using TowerDefence.Scripts.EnemyLogic.EnemyStats;
-using UnityEngine;
 
 namespace TowerDefence.Scripts.BuffsLogic
 {
@@ -11,16 +10,14 @@ namespace TowerDefence.Scripts.BuffsLogic
 		private readonly float _seconds;
 
 		private readonly SyncedTimer _timer;
+		private bool _isTimerOn;
 
-		public bool IsEffectStackable { get; }
-
-		public TimedBuff(IBuffable target, IBuff coreBuff, float seconds,
-			bool isEffectStackable)
+		public TimedBuff(IBuffable target, IBuff coreBuff, float seconds)
 		{
 			_target = target;
 			_coreBuff = coreBuff;
 			_seconds = seconds;
-			IsEffectStackable = isEffectStackable;
+			_isTimerOn = false;
 
 			_timer = new SyncedTimer(TimerType.UpdateTick);
 		}
@@ -28,14 +25,18 @@ namespace TowerDefence.Scripts.BuffsLogic
 		public EnemyStats ApplyBuff(EnemyStats baseStats)
 		{
 			var newStats = _coreBuff.ApplyBuff(baseStats);
-			
-			_timer.Start(_seconds);
 
-			_timer.TimerFinished += () =>
+			if (_isTimerOn == false)
 			{
-				Debug.Log("REMOVE BUFF");
-				_target.RemoveBuff(_coreBuff);
-			};
+				_isTimerOn = true;
+				
+				_timer.Start(_seconds);
+
+				_timer.TimerFinished += () =>
+				{
+					_target.RemoveBuff(this);
+				};
+			}
 
 			return newStats;
 		}

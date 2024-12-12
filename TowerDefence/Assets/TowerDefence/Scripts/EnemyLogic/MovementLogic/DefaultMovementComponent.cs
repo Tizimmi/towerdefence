@@ -1,14 +1,14 @@
-﻿using TowerDefence.Scripts.WaypointsSystem;
+﻿using System;
+using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.EnemyLogic.MovementLogic
 {
 	public class DefaultMovementComponent : MovementComponent
 	{
-		public override void Init(Waypoints path, float moveSpeed)
+		public override void Init(Waypoints path)
 		{
 			Path = path;
-			MovementSpeed = moveSpeed;
 
 			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 			transform.position = CurrentWaypoint.position;
@@ -16,7 +16,7 @@ namespace TowerDefence.Scripts.EnemyLogic.MovementLogic
 			CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);
 		}
 
-		public override void Move()
+		public override void Move(float speed)
 		{
 			if (CurrentWaypoint == null)
 			{
@@ -24,7 +24,7 @@ namespace TowerDefence.Scripts.EnemyLogic.MovementLogic
 				return;
 			}
 
-			transform.position = Vector3.MoveTowards(transform.position, CurrentWaypoint.position, MovementSpeed * Time.deltaTime);
+			transform.position = Vector3.MoveTowards(transform.position, CurrentWaypoint.position, speed * Time.deltaTime);
 
 			if (Vector3.Distance(transform.position, CurrentWaypoint.position) < _pathOffset)
 				CurrentWaypoint = Path.GetNextWaypoint(CurrentWaypoint);

@@ -8,20 +8,21 @@ namespace TowerDefence.Scripts.EnemyLogic
 		[Inject]
 		private readonly MoneyManager _moneyManager;
 
-		private new void Start()
+		private void Start()
 		{
-			base.Start();
+			_healthComponent.Init(_buffManager.BaseStats.Health);
 			_healthComponent.OnZeroHealth += OnZeroHealth;
+			_buffManager.Init();
 		}
 
 		private void Update()
 		{
-			_movementComponent.Move();
+			_movementComponent.Move(_buffManager.CurrentStats.MovementSpeed);
 		}
 
 		protected override void OnZeroHealth()
 		{
-			_moneyManager.AddBalance(CurrentStats.KillValue);
+			_moneyManager.AddBalance(_buffManager.BaseStats.KillValue);
 			Destroy(gameObject);
 		}
 
