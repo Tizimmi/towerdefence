@@ -26,11 +26,6 @@ namespace Plugins.ReactivePropertyModule
 			_value = value;
 		}
 
-		public ReactiveProperty()
-		{
-			_value = default;
-		}
-
 		public void SilentSetValue(TValue value)
 		{
 			_value = value;

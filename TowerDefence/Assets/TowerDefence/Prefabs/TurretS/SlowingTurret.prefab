@@ -245,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a832216fb414e37997e8bb36c6dc78f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0.1
+  _damage: 0.5
   _range: 15
   _value: 200
   _rotationSpeed: 5
@@ -364,6 +364,6 @@ LineRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
