@@ -21,8 +21,11 @@ namespace TowerDefence.Scripts.GameLogic.LevelLogic
 		
 		[field: SerializeField]
 		public TurretStoreView TurretStoreView { get; private set; }
-
+		
 		[field: SerializeField]
-		public Turret[] AvailableTurrets { get; private set; } 
+		public TipPopupView TipPopupView { get; private set; }
+		
+		[field: SerializeField]
+		public Turret[] AvailableTurrets { get; private set; }
 	}
 }

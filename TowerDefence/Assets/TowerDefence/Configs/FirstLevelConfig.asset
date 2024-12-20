@@ -27,7 +27,7 @@ MonoBehaviour:
     - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
     - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
     _spawnRate: 0.5
-    _waveCooldown: 25
+    _waveCooldown: 15
   - _enemies:
     - {fileID: 655922306643017031, guid: 1441e321930ff7a429da59c667a898b2, type: 3}
     - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
@@ -46,10 +46,11 @@ MonoBehaviour:
     - {fileID: 655922306643017031, guid: 1441e321930ff7a429da59c667a898b2, type: 3}
     - {fileID: 655922306643017031, guid: 0152ccc997bf580479ad3c3437219239, type: 3}
     _spawnRate: 0.5
-    _waveCooldown: 20
+    _waveCooldown: 15
   <MoneyView>k__BackingField: {fileID: 1095059906980037269, guid: cbf990783c9a96e4791547c3c7f4c640, type: 3}
   <WaveCountdownView>k__BackingField: {fileID: 7773687140304178092, guid: ede51c6361931584c88f3545660e47cf, type: 3}
   <TurretStoreView>k__BackingField: {fileID: 2405769390209000949, guid: 03d82a67df2c47d48b04c77fab77d54a, type: 3}
+  <TipPopupView>k__BackingField: {fileID: 3694479680549172009, guid: 7f079dfd0ce15474caddc67ee57c90af, type: 3}
   <AvailableTurrets>k__BackingField:
   - {fileID: 7008632863918377452, guid: b4555936ef7d576438632b5f0906c3df, type: 3}
   - {fileID: 9204242841324675788, guid: 7e8461ecf161b0b468365c6f1b283667, type: 3}

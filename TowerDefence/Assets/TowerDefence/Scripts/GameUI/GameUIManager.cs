@@ -11,6 +11,7 @@ namespace TowerDefence.Scripts.GameUI
 		private MoneyView _moneyView;
 		private WaveCountdownView _waveCountdownView;
 		private TurretStoreView _turretStoreView;
+		private TipPopupView _tipPopupView;
 		private readonly Level _level;
 		private readonly LevelConfig _levelConfig;
 		private readonly BuildingManager _buildingManager;
@@ -26,6 +27,7 @@ namespace TowerDefence.Scripts.GameUI
 			_moneyView = _levelConfig.MoneyView;
 			_waveCountdownView = _levelConfig.WaveCountdownView;
 			_turretStoreView = _levelConfig.TurretStoreView;
+			_tipPopupView = _levelConfig.TipPopupView;
 
 			InstantiateUi();
 		}
@@ -40,6 +42,11 @@ namespace TowerDefence.Scripts.GameUI
 
 			_turretStoreView = Object.Instantiate(_turretStoreView, _uiRoot);
 			_turretStoreView.Bind(new TurretStoreViewModel(_levelConfig, _buildingManager));
+
+			_tipPopupView = Object.Instantiate(_tipPopupView, _uiRoot);
+			var model = new TipPopupViewModel("This is example tip");
+			_buildingManager.OnBuildFail += model.ShowTip;
+			_tipPopupView.Bind(model);
 		}
 	}
 }

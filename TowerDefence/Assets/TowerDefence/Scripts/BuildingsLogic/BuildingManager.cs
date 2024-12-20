@@ -1,4 +1,5 @@
 ﻿using Plugins.ReactivePropertyModule;
+using System;
 using TowerDefence.Scripts.BuildingsLogic.Turrets;
 using TowerDefence.Scripts.GameLogic;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class BuildingManager
 	{
+		public Action<string> OnBuildFail;
 		public readonly ReactiveProperty<Turret> SelectedTurret;
 
 		private readonly MoneyManager _moneyManager;
@@ -32,7 +34,7 @@ namespace TowerDefence.Scripts.BuildingsLogic
 			if (_moneyManager.TrySpendBalance(SelectedTurret.Value._value))
 				stand.SpawnTurret(SelectedTurret.Value);
 			else
-				Debug.LogError("dont have enough money");
+				OnBuildFail.Invoke("You don't have enough money");
 		}
 	}
 }

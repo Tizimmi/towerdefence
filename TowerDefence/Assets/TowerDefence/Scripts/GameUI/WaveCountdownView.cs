@@ -29,7 +29,8 @@ namespace TowerDefence.Scripts.GameUI
 				return;
 			}
 
-			_waveCountdown.text = Mathf.Ceil(time).ToString();
+			var count = Mathf.Clamp(time, 0f, Mathf.Infinity);
+			_waveCountdown.text = $"{count:00.00}";
 		}
 	}
 
