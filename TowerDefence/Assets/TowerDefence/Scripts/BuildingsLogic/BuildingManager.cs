@@ -2,20 +2,20 @@
 using System;
 using TowerDefence.Scripts.BuildingsLogic.Turrets;
 using TowerDefence.Scripts.GameLogic;
-using UnityEngine;
+using TowerDefence.Scripts.GameUI;
 
 namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class BuildingManager
 	{
-		public Action<string> OnBuildFail;
 		public readonly ReactiveProperty<Turret> SelectedTurret;
-
 		private readonly MoneyManager _moneyManager;
+		private readonly TipPopupViewModel _tipPopupViewModel;
 
-		public BuildingManager(MoneyManager moneyManager, Turret turret)
+		public BuildingManager(MoneyManager moneyManager, Turret turret, TipPopupViewModel tipPopupViewModel)
 		{
 			_moneyManager = moneyManager;
+			_tipPopupViewModel = tipPopupViewModel;
 			SelectedTurret = new(turret);
 		}
 
@@ -34,7 +34,7 @@ namespace TowerDefence.Scripts.BuildingsLogic
 			if (_moneyManager.TrySpendBalance(SelectedTurret.Value._value))
 				stand.SpawnTurret(SelectedTurret.Value);
 			else
-				OnBuildFail.Invoke("You don't have enough money");
+				_tipPopupViewModel.ShowTip("You don't have enough money");
 		}
 	}
 }

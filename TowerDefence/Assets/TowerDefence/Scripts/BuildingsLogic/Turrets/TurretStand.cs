@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TowerDefence.Scripts.GameUI;
+using UnityEngine;
 using Zenject;
 
 namespace TowerDefence.Scripts.BuildingsLogic.Turrets
@@ -12,6 +13,8 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 
 		[Inject]
 		private BuildingManager _builder;
+		[Inject]
+		private TipPopupViewModel _tipPopupViewModel;
 
 		private Turret _currentTurret;
 
@@ -28,7 +31,10 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 		private void OnMouseDown()
 		{
 			if (_currentTurret != null)
+			{
+				_tipPopupViewModel.ShowTip("This place is taken");
 				return;
+			}
 
 			_builder.BuildTurret(this);
 		}

@@ -1,4 +1,5 @@
 ﻿using TowerDefence.Scripts.BuildingsLogic;
+using TowerDefence.Scripts.GameUI;
 using Zenject;
 
 namespace TowerDefence.Scripts.GameLogic.LevelLogic
@@ -12,12 +13,12 @@ namespace TowerDefence.Scripts.GameLogic.LevelLogic
 		[Inject]
 		private readonly LevelConfig _levelConfig;
 
-		public Level(LevelConfig levelConfig, WaveSpawner waveSpawner)
+		public Level(LevelConfig levelConfig, WaveSpawner waveSpawner, TipPopupViewModel tipPopupViewModel)
 		{
 			_levelConfig = levelConfig;
 			WaveSpawner = waveSpawner;
 			MoneyManager = new MoneyManager(_levelConfig.StartingBalance);
-			BuildingManager = new BuildingManager(MoneyManager, _levelConfig.AvailableTurrets[0]);
+			BuildingManager = new BuildingManager(MoneyManager, _levelConfig.AvailableTurrets[0], tipPopupViewModel );
 		}
 	}
 }
