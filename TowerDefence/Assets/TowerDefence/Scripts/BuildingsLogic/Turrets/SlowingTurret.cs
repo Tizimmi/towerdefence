@@ -22,8 +22,6 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 
 		private SpeedBuff _speedBuff;
 
-		private bool test = false;
-
 		private void Start()
 		{
 			InvokeRepeating(nameof(GetTarget), 0f, 0.5f);
@@ -36,6 +34,7 @@ namespace TowerDefence.Scripts.BuildingsLogic.Turrets
 
 			if (Target == null)
 			{
+				_lineRenderer.enabled = false;
 				return;
 			}
 

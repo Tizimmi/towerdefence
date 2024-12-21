@@ -23,7 +23,7 @@ namespace TowerDefence.Scripts.GameUI
 
 		private void UpdateValue(int value)
 		{
-			_moneyContainer.text = value.ToString();
+			_moneyContainer.text = value + " $";
 		}
 	}
 

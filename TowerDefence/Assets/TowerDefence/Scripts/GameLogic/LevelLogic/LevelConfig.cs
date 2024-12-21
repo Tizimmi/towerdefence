@@ -18,8 +18,14 @@ namespace TowerDefence.Scripts.GameLogic.LevelLogic
 
 		[field: SerializeField]
 		public WaveCountdownView WaveCountdownView { get; private set; }
-
+		
 		[field: SerializeField]
-		public Turret[] AvailableTurrets { get; private set; } 
+		public TurretStoreView TurretStoreView { get; private set; }
+		
+		[field: SerializeField]
+		public TipPopupView TipPopupView { get; private set; }
+		
+		[field: SerializeField]
+		public Turret[] AvailableTurrets { get; private set; }
 	}
 }

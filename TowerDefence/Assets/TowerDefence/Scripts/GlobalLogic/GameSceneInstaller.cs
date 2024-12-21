@@ -22,11 +22,14 @@ namespace TowerDefence.Scripts.GlobalLogic
 		private WaveSpawner _waveSpawner;
 
 		private Level _level;
+		private TipPopupViewModel _tipPopupViewModel;
 
 		public override void InstallBindings()
 		{
-			_level = new Level(_levelConfig, _waveSpawner);
+			_tipPopupViewModel = new();
+			_level = new Level(_levelConfig, _waveSpawner, _tipPopupViewModel);
 
+			Container.Bind<TipPopupViewModel>().FromInstance(_tipPopupViewModel).AsSingle().NonLazy();
 			Container.Bind<GameUIManager>().AsSingle().NonLazy();
 			Container.Bind<BuildingManager>().FromInstance(_level.BuildingManager).AsSingle();
 			Container.Bind<MoneyManager>().FromInstance(_level.MoneyManager).AsSingle();

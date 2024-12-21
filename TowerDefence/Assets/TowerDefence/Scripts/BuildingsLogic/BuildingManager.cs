@@ -1,37 +1,40 @@
-﻿using TowerDefence.Scripts.BuildingsLogic.Turrets;
+﻿using Plugins.ReactivePropertyModule;
+using System;
+using TowerDefence.Scripts.BuildingsLogic.Turrets;
 using TowerDefence.Scripts.GameLogic;
-using UnityEngine;
+using TowerDefence.Scripts.GameUI;
 
 namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class BuildingManager
 	{
-		private Turret _selectedTurret;
-
+		public readonly ReactiveProperty<Turret> SelectedTurret;
 		private readonly MoneyManager _moneyManager;
+		private readonly TipPopupViewModel _tipPopupViewModel;
 
-		public BuildingManager(MoneyManager moneyManager, Turret selectedTurret)
+		public BuildingManager(MoneyManager moneyManager, Turret turret, TipPopupViewModel tipPopupViewModel)
 		{
 			_moneyManager = moneyManager;
-			_selectedTurret = selectedTurret;
+			_tipPopupViewModel = tipPopupViewModel;
+			SelectedTurret = new(turret);
 		}
 
 		public void SetCurrentTurret(Turret turret)
 		{
-			_selectedTurret = turret;
+			SelectedTurret.Value = turret;
 		}
 
 		public Turret GetCurrentTurret()
 		{
-			return _selectedTurret;
+			return SelectedTurret.Value;
 		}
 
 		public void BuildTurret(TurretStand stand)
 		{
-			if (_moneyManager.TrySpendBalance(_selectedTurret._value))
-				stand.SpawnTurret(_selectedTurret);
+			if (_moneyManager.TrySpendBalance(SelectedTurret.Value._value))
+				stand.SpawnTurret(SelectedTurret.Value);
 			else
-				Debug.LogError("dont have enough money");
+				_tipPopupViewModel.ShowTip("You don't have enough money");
 		}
 	}
 }
