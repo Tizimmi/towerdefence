@@ -37,6 +37,7 @@ namespace TowerDefence.Scripts.GameUI
 		protected override void OnUnbind(TurretStoreItemViewModel viewModel)
 		{
 			_selectButton.onClick.RemoveListener(viewModel.SetThisTurret);
+			viewModel.IsSelected.OnValueChange -= UpdateSelected;
 		}
 
 		private void UpdateSelected(bool isSelected)
