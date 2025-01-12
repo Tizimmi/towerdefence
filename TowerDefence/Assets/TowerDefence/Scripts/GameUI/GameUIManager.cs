@@ -1,53 +1,48 @@
-﻿using JetBrains.Annotations;
-using TowerDefence.Scripts.BuildingsLogic;
-using TowerDefence.Scripts.GameLogic.LevelLogic;
+﻿using TowerDefence.Scripts.BuildingsLogic;
+using TowerDefence.Scripts.BuildingsLogic.Turrets;
+using TowerDefence.Scripts.GameLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.GameUI
 {
-	[UsedImplicitly]
 	public class GameUIManager
 	{
-		private MoneyView _moneyView;
-		private WaveCountdownView _waveCountdownView;
-		private TurretStoreView _turretStoreView;
-		private TipPopupView _tipPopupView;
-		private readonly Level _level;
-		private readonly LevelConfig _levelConfig;
+		private readonly Turret[] _availableTurrets;
 		private readonly BuildingManager _buildingManager;
-		private readonly RectTransform _uiRoot;
-		
-		private readonly TipPopupViewModel _tipPopupViewModel;
+		private readonly MoneyManager _moneyManager;
+		private readonly Transform _uiRoot;
+		private readonly ViewProvider _viewProvider;
+		private readonly WaveSpawner _waveSpawner;
 
-		public GameUIManager(RectTransform uiRoot, Level level, LevelConfig levelConfig, BuildingManager buildingManager, TipPopupViewModel tipPopupViewModel)
+		public GameUIManager(
+			ViewProvider viewProvider,
+			Transform uiRoot,
+			BuildingManager buildingManager,
+			MoneyManager moneyManager,
+			WaveSpawner waveSpawner,
+			Turret[] availableTurrets)
 		{
+			_viewProvider = viewProvider;
 			_uiRoot = uiRoot;
-			_level = level;
-			_levelConfig = levelConfig;
 			_buildingManager = buildingManager;
-			_tipPopupViewModel = tipPopupViewModel;
-
-			_moneyView = _levelConfig.MoneyView;
-			_waveCountdownView = _levelConfig.WaveCountdownView;
-			_turretStoreView = _levelConfig.TurretStoreView;
-			_tipPopupView = _levelConfig.TipPopupView;
-
-			InstantiateUi();
+			_moneyManager = moneyManager;
+			_waveSpawner = waveSpawner;
+			_availableTurrets = availableTurrets;
 		}
 
-		private void InstantiateUi()
+		public void InstantiateUi()
 		{
-			_moneyView = Object.Instantiate(_moneyView, _uiRoot);
-			_moneyView.Bind(new MoneyViewModel(_level.MoneyManager.CurrentBalance));
+			var moneyView = Object.Instantiate(_viewProvider.MoneyView, _uiRoot);
+			moneyView.Bind(new MoneyViewModel(_moneyManager.CurrentBalance));
 
-			_waveCountdownView = Object.Instantiate(_waveCountdownView, _uiRoot);
-			_waveCountdownView.Bind(new WaveCountdownViewModel(_level.WaveSpawner.WaveTimer));
+			var countdownView = Object.Instantiate(_viewProvider.WaveCountdownView, _uiRoot);
+			countdownView.Bind(new WaveCountdownViewModel(_waveSpawner.WaveTimer));
 
-			_turretStoreView = Object.Instantiate(_turretStoreView, _uiRoot);
-			_turretStoreView.Bind(new TurretStoreViewModel(_levelConfig, _buildingManager));
+			var turretStore = Object.Instantiate(_viewProvider.TurretStoreView, _uiRoot);
+			turretStore.Bind(new TurretStoreViewModel(_availableTurrets, _buildingManager));
 
-			_tipPopupView = Object.Instantiate(_tipPopupView, _uiRoot);
-			_tipPopupView.Bind(_tipPopupViewModel);
+			var tipPopup = Object.Instantiate(_viewProvider.TipPopupView, _uiRoot);
+			tipPopup.Bind(new TipPopupViewModel());
 		}
 	}
 }

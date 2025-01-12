@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using TowerDefence.Scripts.BuildingsLogic;
 using TowerDefence.Scripts.BuildingsLogic.Turrets;
-using TowerDefence.Scripts.GameLogic.LevelLogic;
 using UnityEngine;
 
 namespace TowerDefence.Scripts.GameUI
@@ -22,13 +21,11 @@ namespace TowerDefence.Scripts.GameUI
 				instance.Bind(viewModel.ChildModels[index]);
 			}
 		}
-		
+
 		protected override void OnUnbind(TurretStoreViewModel viewModel)
 		{
 			foreach (var view in _childViews)
-			{
 				view.Unbind();
-			}
 		}
 	}
 
@@ -37,10 +34,10 @@ namespace TowerDefence.Scripts.GameUI
 		private readonly BuildingManager _buildingManager;
 		public readonly List<TurretStoreItemViewModel> ChildModels = new();
 
-		public TurretStoreViewModel(LevelConfig levelConfig, BuildingManager buildingManager)
+		public TurretStoreViewModel(Turret[] availableTurrets, BuildingManager buildingManager)
 		{
 			_buildingManager = buildingManager;
-			foreach (var turret in levelConfig.AvailableTurrets)
+			foreach (var turret in availableTurrets)
 			{
 				var model = new TurretStoreItemViewModel(turret, buildingManager.SelectedTurret);
 				ChildModels.Add(model);

@@ -1,41 +1,27 @@
 ﻿using Plugins.ReactivePropertyModule;
 using System.Collections;
-using TowerDefence.Scripts.EnemyLogic;
-using TowerDefence.Scripts.GameLogic.LevelLogic;
 using TowerDefence.Scripts.GlobalLogic;
 using TowerDefence.Scripts.WaypointsSystem;
 using UnityEngine;
-using Zenject;
 
 namespace TowerDefence.Scripts.GameLogic
 {
-	public class WaveSpawner : MonoBehaviour
+	public class WaveSpawner
 	{
 		public ReactiveProperty<float> WaveTimer { get; } = new(0);
-		
-		[Inject]
-		private readonly Transform _enemyRoot;
-		[Inject]
-		private readonly GamePrefabFactory _gamePrefabFactory;
-		[Inject]
-		private readonly LevelConfig _levelConfig;
-		[Inject]
-		private readonly Waypoints _waypoints;
 
 		private int _currentWaveIndex;
+		private readonly ICoroutineRunner _coroutineRunner;
 
-		private WaveInfo[] _waveInfos;
+		private readonly Transform _enemyRoot;
 
-		private void Start()
+		private readonly WaveInfo[] _waveInfos;
+		private readonly Waypoints _waypoints;
+
+		public WaveSpawner(ICoroutineRunner coroutineRunner, WaveInfo[] waveInfos)
 		{
-			_waveInfos = _levelConfig.WaveInfos;
-
-			WaveTimer.Value = 0; // TODO: Мэйби сделать отдельную переменную для определения первого таймера?
-		}
-
-		private void Update()
-		{
-			TrySpawnWave();
+			_coroutineRunner = coroutineRunner;
+			_waveInfos = waveInfos;
 		}
 
 		private void TrySpawnWave()
@@ -44,13 +30,13 @@ namespace TowerDefence.Scripts.GameLogic
 			{
 				if (_currentWaveIndex < _waveInfos.Length)
 				{
-					StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
+					_coroutineRunner.StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
 				}
 				else
 				{
 					// TODO: конец уровня победой
 					_currentWaveIndex = 0;
-					StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
+					_coroutineRunner.StartCoroutine(SpawnWave(_waveInfos[_currentWaveIndex]));
 				}
 
 				WaveTimer.Value = _waveInfos[_currentWaveIndex]._waveCooldown;
@@ -62,16 +48,7 @@ namespace TowerDefence.Scripts.GameLogic
 		private IEnumerator SpawnWave(WaveInfo wave)
 		{
 			foreach (var enemy in wave.GetEnemies())
-			{
-				var c = _gamePrefabFactory.InstantiatePrefab<Enemy>(enemy,
-					_enemyRoot.position,
-					Quaternion.identity,
-					_enemyRoot);
-
-				c._movementComponent.Init(_waypoints);
-				
 				yield return new WaitForSeconds(_waveInfos[_currentWaveIndex]._spawnRate);
-			}
 
 			_currentWaveIndex++;
 		}

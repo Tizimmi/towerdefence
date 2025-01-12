@@ -1,22 +1,18 @@
 ﻿using Plugins.ReactivePropertyModule;
-using System;
 using TowerDefence.Scripts.BuildingsLogic.Turrets;
 using TowerDefence.Scripts.GameLogic;
-using TowerDefence.Scripts.GameUI;
 
 namespace TowerDefence.Scripts.BuildingsLogic
 {
 	public class BuildingManager
 	{
-		public readonly ReactiveProperty<Turret> SelectedTurret;
 		private readonly MoneyManager _moneyManager;
-		private readonly TipPopupViewModel _tipPopupViewModel;
+		public readonly ReactiveProperty<Turret> SelectedTurret;
 
-		public BuildingManager(MoneyManager moneyManager, Turret turret, TipPopupViewModel tipPopupViewModel)
+		public BuildingManager(MoneyManager moneyManager, Turret turret)
 		{
 			_moneyManager = moneyManager;
-			_tipPopupViewModel = tipPopupViewModel;
-			SelectedTurret = new(turret);
+			SelectedTurret = new ReactiveProperty<Turret>(turret);
 		}
 
 		public void SetCurrentTurret(Turret turret)
@@ -33,8 +29,6 @@ namespace TowerDefence.Scripts.BuildingsLogic
 		{
 			if (_moneyManager.TrySpendBalance(SelectedTurret.Value._value))
 				stand.SpawnTurret(SelectedTurret.Value);
-			else
-				_tipPopupViewModel.ShowTip("You don't have enough money");
 		}
 	}
 }

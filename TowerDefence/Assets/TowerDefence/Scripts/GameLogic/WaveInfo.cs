@@ -8,13 +8,13 @@ namespace TowerDefence.Scripts.GameLogic
 	public class WaveInfo
 	{
 		[SerializeField]
-		public Enemy[] _enemies;
+		public EnemyType[] _enemies;
 		[SerializeField]
 		public float _spawnRate;
 		[SerializeField]
 		public float _waveCooldown;
 
-		public Enemy[] GetEnemies()
+		public EnemyType[] GetEnemies()
 		{
 			return _enemies;
 		}
